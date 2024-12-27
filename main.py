@@ -52,6 +52,7 @@ def add_task(description):
 # Update a task
 def update_task(task_id, new_description):
     tasks = load_tasks()
+    task_id = str(task_id)  # Ensure task_id is a string
     if task_id in tasks:
         tasks[task_id]["description"] = new_description
         tasks[task_id]["updatedAt"] = datetime.now().isoformat()
@@ -63,6 +64,7 @@ def update_task(task_id, new_description):
 # Delete a task
 def delete_task(task_id):
     tasks = load_tasks()
+    task_id = str(task_id)  # Convert task_id to a string
     if task_id in tasks:
         deleted_task = tasks.pop(task_id)
         save_tasks(tasks)
@@ -73,9 +75,10 @@ def delete_task(task_id):
 # Change task status
 def change_status(task_id, status):
     tasks = load_tasks()
-    if not is_valid_status(status):
+    if status not in ["todo", "in-progress", "done"]:
         print("Invalid status. Use 'todo', 'in-progress', or 'done'.")
         return
+    task_id = str(task_id)  # Convert task_id to a string
     if task_id in tasks:
         tasks[task_id]["status"] = status
         tasks[task_id]["updatedAt"] = datetime.now().isoformat()
@@ -87,15 +90,26 @@ def change_status(task_id, status):
 # List tasks
 def list_tasks(filter_status=None):
     tasks = load_tasks()
-    filtered_tasks = (
-        {tid: task for tid, task in tasks.items() if task["status"] == filter_status}
-        if filter_status else tasks
-    )
+    print(f"Loaded tasks: {tasks}")  # Debugging print
+    print(f"Filter status: {filter_status}")  # Debugging print
+
+    if filter_status and filter_status != "all":
+        filtered_tasks = {
+            tid: task for tid, task in tasks.items() if task["status"] == filter_status
+        }
+    else:
+        filtered_tasks = tasks
+
     if not filtered_tasks:
         print("No tasks found.")
     else:
         for tid, task in filtered_tasks.items():
-            print(f"ID: {tid}, Description: {task['description']}, Status: {task['status']}, Created At: {task['createdAt']}, Updated At: {task['updatedAt']}")
+            print(
+                f"ID: {tid}, Description: {task['description']}, "
+                f"Status: {task['status']}, Created At: {task['createdAt']}, "
+                f"Updated At: {task['updatedAt']}"
+            )
+
 
 # CLI interface
 def main():
