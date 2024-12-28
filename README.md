@@ -33,34 +33,34 @@ Below are examples of the commands and their usage:
 
 ### Adding a New Task
 ```bash
-python task_tracker.py add "Buy groceries"
+python main.py add "Buy groceries"
 # Output: Task added successfully (ID: 1)
 ```
 
 ### Updating a Task
 ```bash
-python task_tracker.py update 1 "Buy groceries and cook dinner"
+python main.py update 1 "Buy groceries and cook dinner"
 # Output: Task 1 updated successfully
 ```
 
 ### Deleting a Task
 ```bash
-python task_tracker.py delete 1
+python main.py delete 1
 # Output: Task 1 deleted successfully
 ```
 
 ### Marking Tasks as In Progress or Done
 ```bash
-python task_tracker.py mark-in-progress 1
+python main.py mark-in-progress 1
 # Output: Task 1 marked as in progress
 
-python task_tracker.py mark-done 1
+python main.py mark-done 1
 # Output: Task 1 marked as done
 ```
 
 ### Listing All Tasks
 ```bash
-python task_tracker.py list
+python main.py list
 # Output:
 # 1: Buy groceries (todo)
 # 2: Complete project (in-progress)
@@ -69,21 +69,21 @@ python task_tracker.py list
 ### Listing Tasks by Status
 #### Todo Tasks
 ```bash
-python task_tracker.py list todo
+python main.py list todo
 # Output:
 # 1: Buy groceries (todo)
 ```
 
 #### In Progress Tasks
 ```bash
-python task_tracker.py list in-progress
+python main.py list in-progress
 # Output:
 # 2: Complete project (in-progress)
 ```
 
 #### Done Tasks
 ```bash
-python task_tracker.py list done
+python main.py list done
 # Output:
 # 3: Submit report (done)
 ```
@@ -122,13 +122,13 @@ Each task will have the following properties:
 
 ### Example Usage
 ```bash
-python task_tracker.py add "Complete coding assignment"
-python task_tracker.py list
-python task_tracker.py mark-done 1
+python main.py add "Complete coding assignment"
+python main.py list
+python main.py mark-done 1
 ```
 
 ## Notes
-- Ensure the `tasks.json` file is in the same directory as the `task_tracker.py` script.
+- Ensure the `tasks.json` file is in the same directory as the `main.py` script.
 - The script will create the `tasks.json` file if it does not exist.
 
 Happy coding!
